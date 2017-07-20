@@ -1,10 +1,11 @@
 import sys
 import math
-from collections import deque # a faster insert/pop queue
+from collections import deque  # a faster insert/pop queue
 from six.moves import cStringIO as StringIO
 from decimal import Decimal
 
 from .ordertree import OrderTree
+
 
 class OrderBook(object):
     def __init__(self, tick_size = 0.0001):
@@ -77,11 +78,11 @@ class OrderBook(object):
                 print(("TRADE: Time - {}, Price - {}, Quantity - {}, TradeID - {}, Matching TradeID - {}".format(self.time, traded_price, traded_quantity, counter_party, quote['trade_id'])))
 
             transaction_record = {
-                    'timestamp': self.time,
-                    'price': traded_price,
-                    'quantity': traded_quantity,
-                    'time': self.time
-                    }
+                'timestamp': self.time,
+                'price': traded_price,
+                'quantity': traded_quantity,
+                'time': self.time
+            }
 
             if side == 'bid':
                 transaction_record['party1'] = [counter_party, 'bid', head_order.order_id, new_book_quantity]
@@ -93,7 +94,7 @@ class OrderBook(object):
             self.tape.append(transaction_record)
             trades.append(transaction_record)
         return quantity_to_trade, trades
-                    
+
     def process_market_order(self, quote, verbose):
         trades = []
         quantity_to_trade = quote['quantity']
@@ -228,7 +229,7 @@ class OrderBook(object):
         if self.tape != None and len(self.tape) > 0:
             num = 0
             for entry in self.tape:
-                if num < 10: # get last 5 entries
+                if num < 10:  # get last 5 entries
                     tempfile.write(str(entry['quantity']) + " @ " + str(entry['price']) + " (" + str(entry['timestamp']) + ") " + str(entry['party1'][0]) + "/" + str(entry['party2'][0]) + "\n")
                     num += 1
                 else:

@@ -2,6 +2,7 @@ from bintrees import RBTree
 from .orderlist import OrderList
 from .order import Order
 
+
 class OrderTree(object):
     '''A red-black tree used to store OrderLists in price order
 
