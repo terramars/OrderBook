@@ -13,7 +13,7 @@ class Order(object):
         self.timestamp = Decimal(quote['timestamp']) # decimal representing the timestamp of order creation
         self.quantity = Decimal(quote['quantity']) # decimal representing amount of thing - can be partial amounts
         self.price = Decimal(quote['price']) # decimal representing price (currency)
-        self.order_id = int(quote['order_id'])
+        self.order_id = quote['order_id']
         self.trade_id = quote['trade_id']
         # doubly linked list to make it easier to re-order Orders for a particular price point
         self.next_order = None
